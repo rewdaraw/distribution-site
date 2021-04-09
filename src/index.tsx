@@ -15,3 +15,11 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+/// <reference types="webpack-env" />
+if (module.hot) {
+  module.hot.accept("./App", () => {
+    const NewApp = require("./App").default;
+    ReactDOM.render(<NewApp />, document.getElementById("root") as HTMLElement);
+  });
+}
