@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import TopMainBg from '../../assets/images/topMainBg.png';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -25,13 +25,19 @@ const useStyle = makeStyles(() =>
 
 const TopMain: FC = () => {
   const classes = useStyle();
+  const [keyword, setKeyword] = useState('');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+  };
+
   return (
     <div className={classes.background}>
       <Paper className={classes.paper}>
         <IconButton type="submit">
           <SearchIcon />
         </IconButton>
-        <InputBase placeholder="無料素材を検索" />
+        <InputBase placeholder="無料素材を検索" onChange={handleChange} />
       </Paper>
     </div>
   );
