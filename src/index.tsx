@@ -18,8 +18,8 @@ reportWebVitals();
 
 /// <reference types="webpack-env" />
 if (module.hot) {
-  module.hot.accept("./App", () => {
-    const NewApp = require("./App").default;
-    ReactDOM.render(<NewApp />, document.getElementById("root") as HTMLElement);
+  module.hot.accept('./App', () => {
+    const NewApp = require('./App').default;
+    ReactDOM.render(<NewApp />, document.getElementById('root') as HTMLElement);
   });
 }
