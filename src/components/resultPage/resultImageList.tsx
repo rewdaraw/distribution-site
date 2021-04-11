@@ -42,7 +42,15 @@ const ImageItemList: FC = () => {
     getData(keyword);
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      {data.map((tile) => (
+        <div key={tile.title}>
+          <img src={tile.image} alt={tile.title} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default ImageItemList;
