@@ -1,10 +1,13 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import firebase from '../../firebase';
 import { TileData } from '../../types/types';
 
 const ImageItemList: FC = () => {
-  // 
+  //
   const [data, setData] = useState<TileData[]>([]);
+  // TODO: 型エラー回避のためにanyを付与
+  const { keyword }: any = useParams();
 
   // 検索結果データを取得し配列に格納する関数
   const getData = async (searchWord: string | undefined) => {
@@ -34,6 +37,10 @@ const ImageItemList: FC = () => {
     //
     setData(temporaryData as TileData[]);
   };
+
+  useEffect(() => {
+    getData(keyword);
+  }, []);
 
   return <div></div>;
 };
