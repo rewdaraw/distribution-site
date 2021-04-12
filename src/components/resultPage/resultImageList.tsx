@@ -1,9 +1,29 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import firebase from '../../firebase';
 import { TileData } from '../../types/types';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+
+const useStyle = makeStyles(() =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      width: '80%',
+      textAlign: 'center',
+      marginTop: '2%',
+    },
+    tileImage: {
+      height: '218px',
+      width: '218px',
+    },
+  })
+);
 
 const ImageItemList: FC = () => {
+  const classes = useStyle();
+  const history = useHistory();
   //
   const [data, setData] = useState<TileData[]>([]);
   // TODO: 型エラー回避のためにanyを付与
@@ -43,10 +63,20 @@ const ImageItemList: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={classes.root}>
       {data.map((tile) => (
         <div key={tile.title}>
-          <img src={tile.image} alt={tile.title} />
+          <Button
+            onClick={() => {
+              history.push('/download/' + tile.title);
+            }}>
+            <img
+              src={tile.image}
+              alt={tile.title}
+              className={classes.tileImage}
+            />
+          </Button>
+          <h3>{tile.title}</h3>
         </div>
       ))}
     </div>
