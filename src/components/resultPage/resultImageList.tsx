@@ -29,6 +29,7 @@ const ImageItemList: FC = () => {
   // TODO: 型エラー回避のためにanyを付与
   const { keyword }: any = useParams();
 
+  // TODO: downloadPage.tsxでも使っているので外部に切り出して呼び込むように変更
   // 検索結果データを取得し配列に格納する関数
   const getData = async (searchWord: string | undefined) => {
     // firebaseのfirestoreを変数に格納
