@@ -12,6 +12,10 @@ const useStyle = makeStyles(() =>
       width: '426px',
       height: '426px',
     },
+    main: {
+      textAlign: 'center',
+      marginTop: '5%',
+    },
   })
 );
 
@@ -71,10 +75,28 @@ const DownloadPage: FC = () => {
     );
   };
 
+  const downloadButton = () => {
+    return (
+      <div>
+        {data.map((tile) => (
+          <Button
+            key={tile.downloadUrl}
+            variant="contained"
+            href={tile.downloadUrl}>
+            無料ダウンロード
+          </Button>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div>
       <TopHeader />
-      {displayImage()}
+      <div className={classes.main}>
+        {displayImage()}
+        {downloadButton()}
+      </div>
     </div>
   );
 };
